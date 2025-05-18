@@ -22,37 +22,7 @@ const DiscoverComponent = ({ listingGallery }) => (
   </div>
 );
 
-// Main App component
-// function App() {
-//   const [userNFTIds, setUserNFTIds] = useState([]);
-//   const [listingGallery, setListingGallery] = useState([]);
 
-//   async function getNFTs() {
-//     const userNFTIds = await opend_backend.getOwnerNFTs(CURRENT_USER_ID);
-
-//     console.log("User NFTs:", userNFTIds);
-// setUserNFTIds(<Gallery title="Discover" ids={userNFTIds} role="collection" />);
-//     // setUserNFTIds(userNFTIds);
-//     // <Gallery title="Discover" ids={ids} role="collection" />
-
-//     const listedNFTIds = await opend_backend.getListedNFTs();
-//     console.log(listedNFTIds);
-
-//     setListingGallery(<Gallery title="Discover" ids={listedNFTIds} role="discover" />);
-//   }
-
-
-//   useEffect(() => {
-//     getNFTs();
-//   }, []);
-
-//   return (
-//     <BrowserRouter>
-//       <Header />
-//       <MainContent userNFTIds={userNFTIds} listingGallery={listingGallery} />
-//     </BrowserRouter>
-//   );
-// }
 
 function App() {
   const [userNFTIds, setUserNFTIds] = useState([]);

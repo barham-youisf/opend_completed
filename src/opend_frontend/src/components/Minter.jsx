@@ -21,7 +21,7 @@ function Minter() {
 
       console.log("Minting NFT locally...");
 
-      // For local testing, no cycles needed
+
       const newNFTId = await opend_backend.mint(imageArray, name);
       console.log("Minted NFT ID:", newNFTId.toText());
       setNftPrincipal(newNFTId.toText());

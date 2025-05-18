@@ -13,8 +13,8 @@ import CURRENT_USER_ID from "../main";
 function Item(props) {
   const [name, setName] = useState("");
   const [owner, setOwner] = useState("");
-  const [image, setImage] = useState(""); // Default image
-  const [button, setButton] = useState(null); // Button state
+  const [image, setImage] = useState("");
+  const [button, setButton] = useState(null);
   const [priceInput, setPriceInput] = useState();
   const [loaderHidden, setLoaderHidden] = useState(true);
   const [blur, setBlur] = useState();
@@ -58,9 +58,9 @@ function Item(props) {
           setOwner("OpenD");
           setBlur({ filter: "blur(4px)" });
           setSellStatus("Listed");
-          setButton(<Button text="Listed" disabled={true} />); // Disable if already listed
+          setButton(<Button text="Listed" disabled={true} />);
         } else {
-          setButton(<Button handleClick={handleSell} text="Sell" />); // Show Sell if not listed
+          setButton(<Button handleClick={handleSell} text="Sell" />);
         }
 
 
@@ -148,7 +148,7 @@ function Item(props) {
       const buyAgent = new HttpAgent({ host: "http://localhost:4943" });
       await buyAgent.fetchRootKey();
 
-      // 2. Create token actor with the CORRECT agent (buyAgent, not agent)
+      // 2. Create token actor  agent (buyAgent)
       const token_backend_Actor = await Actor.createActor(token_backend, {
         agent: buyAgent, // Use the agent we just created
         canisterId: Principal.fromText("wrjd4-zp777-77774-qaanq-cai"),
@@ -158,18 +158,18 @@ function Item(props) {
       const sellerId = await opend_backend.getOriginalOwner(props.id);
       const itemPrice = await opend_backend.getListedNFTPrice(props.id); // Fixed: use opend_backend
 
-      // 4. Execute transfer (assuming transfer is the correct method name)
+      // 4. Execute transfer 
       const result = await token_backend_Actor.transfer(sellerId, itemPrice);
 
 
       if (result === "Success") {
-        // alert("NFT purchased successfully!");
+
         const transferResult = await opend_backend.completePurchase(props.id, sellerId, CURRENT_USER_ID);
         console.log("purchase: " + transferResult);
         setLoaderHidden(true);
 
 
-        // Optional: refresh the NFT state
+
         await loadNFT();
         setDisplay(false);
       }
